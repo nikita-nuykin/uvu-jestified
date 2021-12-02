@@ -1,5 +1,4 @@
-import { toBe, toBeTruthy, toBeNull } from '../matchers';
-import { toEqual } from '../matchers/to-equal/to-equal';
+import { toBe, toBeTruthy, toBeNull, toEqual } from '../matchers';
 
 export interface ExpectedMatchers<T> {
   toBe: (expected: T) => void;
