@@ -12,6 +12,7 @@
     "airbnb-typescript"
   ],
   "rules": {
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "max-len": ["error", { "code": 90 }]
   }
 }

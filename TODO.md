@@ -1,18 +1,55 @@
 # TODO
-- [ ] Basic project structure
-- [ ] Strict eslint config
-- [ ] `describe` function
-- [ ] `it` function
 - [ ] `beforeAll`, `afterAll`, `beforeEach`, `afterEach` hooks implementation as `describe` params
-- [ ] `expect` function
-- [ ] `expect(value).toEqual` function
-- [ ] `expect(value).toStrictEqual` function
-- [ ] `expect(value).toBeTruthy` function
-- [ ] `expect(value).toBeFalsy` function
-- [ ] `expect(value).toBeFalsy` function
-- [ ] `expect(value).toMatchObject` function
-- [ ] `expect(value).toMatchSnapshot` function implementations with reading from jest's snap file
-- [ ] `expect(value).toMatchSnapshot` auto create snapshot implementation
-- [ ] `expect(value).toMatchSnapshot` update snapshot implementation (when executed with argument)
-- [ ] `expect(value).not.<func>` implementation
-- [ ] `beforeAll`, `afterAll`, `beforeEach`, `afterEach` hooks as standalone functions
+- [ ] `expect.anything`
+- [ ] `expect.any`
+- [ ] `expect.arrayContaining`
+- [ ] `expect.assertions`
+- [ ] `expect.hasAssertions`
+- [ ] `expect.not.arrayContaining`
+- [ ] `expect.not.objectContaining`
+- [ ] `expect.not.stringContaining`
+- [ ] `expect.not.stringMatching`
+- [ ] `expect.objectContaining`
+- [ ] `expect.stringContaining`
+- [ ] `expect.stringMatching`
+- [ ] `expect.addSnapshotSerializer`
+- [ ] `.not`
+- [ ] `.resolves`
+- [ ] `.rejects`
+- [ ] `.toHaveBeenCalled`
+- [ ] `.toHaveBeenCalledTimes`
+- [ ] `.toHaveBeenCalledWith`
+- [ ] `.toHaveBeenLastCalledWith`
+- [ ] `.toHaveBeenNthCalledWith`
+- [ ] `.toHaveReturned`
+- [ ] `.toHaveReturnedTimes`
+- [ ] `.toHaveReturnedWith`
+- [ ] `.toHaveLastReturnedWith`
+- [ ] `.toHaveNthReturnedWith`
+- [ ] `.toHaveLength`
+- [ ] `.toHaveProperty`
+- [ ] `.toBeCloseTo`
+- [ ] `.toBeDefined`
+- [ ] `.toBeFalsy`
+- [ ] `.toBeGreaterThan`
+- [ ] `.toBeGreaterThanOrEqual`
+- [ ] `.toBeLessThan`
+- [ ] `.toBeLessThanOrEqual`
+- [ ] `.toBeInstanceOf`
+- [ ] `.toBeUndefined`
+- [ ] `.toBeNaN`
+- [ ] `.toContain`
+- [ ] `.toContainEqual`
+- [ ] `.toMatch`
+- [ ] `.toMatchObject`
+- [ ] `.toMatchSnapshot`
+- [ ] `.toMatchInlineSnapshot`
+- [ ] `.toStrictEqual`
+- [ ] `.toThrow`
+- [ ] `.toThrowErrorMatchingSnapshot`
+- [ ] `.toThrowErrorMatchingInlineSnapshot`
+- [ ] optimize `toMatchObjectAlgo`
+- [x] `.toBe(value)`
+- [x] `.toBeTruthy`
+- [x] `.toBeNull`
+- [x] `.toEqual`
