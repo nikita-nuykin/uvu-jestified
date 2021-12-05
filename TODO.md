@@ -1,5 +1,4 @@
 # TODO
-- [ ] `beforeAll`, `afterAll`, `beforeEach`, `afterEach` hooks implementation as `describe` params
 - [ ] `expect.anything`
 - [ ] `expect.any`
 - [ ] `expect.arrayContaining`
@@ -53,3 +52,5 @@
 - [x] `.toBeTruthy`
 - [x] `.toBeNull`
 - [x] `.toEqual`
+- [x] `beforeAll`, `afterAll`, `beforeEach`, `afterEach` hooks implementation as `describe` params
+- [x] `beforeAll`, `afterAll`, `beforeEach`, `afterEach` hooks examples

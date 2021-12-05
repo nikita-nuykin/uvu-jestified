@@ -70,3 +70,46 @@ describe('Group of tests', (it) => { // Don't forget to use `it` as a param
   });
 });
 ```
+
+### Using `beforeAll`, `beforeEach`, `afterEach`, `afterAll` hooks
+
+With `describe`:
+```typescript
+import {describe} from 'uvu-jestified';
+
+const afterEach = async () => {
+  // clear DB
+};
+
+describe('Group of tests', { afterEach }, (it) => { // Don't forget to use `it` as a param
+  it('Test 1', () => {
+    // body
+  });
+
+  it('Test 2', () => {
+    // body
+  });
+});
+```
+
+With `createDescribe`
+
+```typescript
+import {createDescribe} from 'uvu-jestified';
+
+const afterEach = async () => {
+  // clear DB
+};
+
+const describe = createDescribe({afterEach});
+
+describe('Group of tests', (it) => { // Don't forget to use `it` as a param
+  it('Test 1', () => {
+    // body
+  });
+
+  it('Test 2', () => {
+    // body
+  });
+});
+```
