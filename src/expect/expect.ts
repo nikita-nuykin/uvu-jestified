@@ -8,6 +8,7 @@ import {
   toStrictEqual,
   toHaveBeenCalled,
   toHaveBeenCalledTimes,
+  toHaveBeenCalledWith,
 } from '../matchers';
 
 export interface ExpectedMatchers {
@@ -24,6 +25,8 @@ export interface ExpectedMatchersForMockFunction extends ExpectedMatchers {
   toBeCalled: () => void;
   toHaveBeenCalledTimes: (amount: number) => void;
   toBeCalledTimes: (amount: number) => void;
+  toHaveBeenCalledWith: (...args: unknown[]) => void;
+  toBeCalledWith: (...args: unknown[]) => void;
 }
 
 export function expect(actual: unknown): ExpectedMatchers;
@@ -48,6 +51,9 @@ export function expect(
       toHaveBeenCalledTimes(actual as MockFunction, amount);
     result.toBeCalledTimes = (amount: number) =>
       toHaveBeenCalledTimes(actual as MockFunction, amount);
+    result.toHaveBeenCalledWith = (...args: unknown[]) =>
+      toHaveBeenCalledWith(actual, ...args);
+    result.toBeCalledWith = result.toHaveBeenCalledWith;
   }
   return result;
 }

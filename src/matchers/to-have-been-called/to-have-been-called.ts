@@ -5,7 +5,7 @@ export function toHaveBeenCalled(
   func: MockFunction,
   errorMessage?: string,
 ): void {
-  const result = func.hasBeenCalled();
+  const result = func.getCalledTimes() > 0;
   if (result) return;
 
   const generated = !errorMessage;
