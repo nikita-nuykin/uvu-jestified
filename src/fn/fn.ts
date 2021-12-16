@@ -1,4 +1,4 @@
-interface MockFunction {
+export interface MockFunction {
   (): void;
   hasBeenCalled: () => boolean;
 }

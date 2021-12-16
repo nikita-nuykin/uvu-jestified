@@ -15,7 +15,6 @@
 - [ ] `.not`
 - [ ] `.resolves`
 - [ ] `.rejects`
-- [ ] `.toHaveBeenCalled`
 - [ ] `.toHaveBeenCalledTimes`
 - [ ] `.toHaveBeenCalledWith`
 - [ ] `.toHaveBeenLastCalledWith`
@@ -56,3 +55,4 @@
 - [x] `beforeAll`, `afterAll`, `beforeEach`, `afterEach` hooks examples
 - [x] `.toMatchObject`
 - [x] `.toStrictEqual`
+- [x] `.toHaveBeenCalled`
