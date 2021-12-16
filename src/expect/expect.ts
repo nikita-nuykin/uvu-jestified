@@ -9,6 +9,7 @@ import {
   toHaveBeenCalled,
   toHaveBeenCalledTimes,
   toHaveBeenCalledWith,
+  toHaveBeenLastCalledWith,
 } from '../matchers';
 
 export interface ExpectedMatchers {
@@ -27,6 +28,8 @@ export interface ExpectedMatchersForMockFunction extends ExpectedMatchers {
   toBeCalledTimes: (amount: number) => void;
   toHaveBeenCalledWith: (...args: unknown[]) => void;
   toBeCalledWith: (...args: unknown[]) => void;
+  toHaveBeenLastCalledWith: (...args: unknown[]) => void;
+  lastCalledWith: (...args: unknown[]) => void;
 }
 
 export function expect(actual: unknown): ExpectedMatchers;
@@ -35,7 +38,7 @@ export function expect(actual: MockFunction): ExpectedMatchersForMockFunction;
 export function expect(
   actual: unknown | MockFunction,
 ): ExpectedMatchers | ExpectedMatchersForMockFunction {
-  const result: any = {
+  const result: ExpectedMatchers = {
     toBe: (expects: unknown) => toBe(actual, expects),
     toBeTruthy: () => toBeTruthy(actual),
     toBeNull: () => toBeNull(actual),
@@ -44,16 +47,26 @@ export function expect(
     toStrictEqual: (expects: unknown) => toStrictEqual(actual, expects),
   };
 
-  if (isMockFunction(actual)) {
-    result.toHaveBeenCalled = () => toHaveBeenCalled(actual as MockFunction);
-    result.toBeCalled = () => toHaveBeenCalled(actual as MockFunction);
-    result.toHaveBeenCalledTimes = (amount: number) =>
-      toHaveBeenCalledTimes(actual as MockFunction, amount);
-    result.toBeCalledTimes = (amount: number) =>
-      toHaveBeenCalledTimes(actual as MockFunction, amount);
-    result.toHaveBeenCalledWith = (...args: unknown[]) =>
-      toHaveBeenCalledWith(actual, ...args);
-    result.toBeCalledWith = result.toHaveBeenCalledWith;
-  }
-  return result;
+  if (!isMockFunction(actual)) return result;
+
+  const resultForMockFunction: ExpectedMatchersForMockFunction =
+    result as ExpectedMatchersForMockFunction;
+
+  resultForMockFunction.toHaveBeenCalled = () =>
+    toHaveBeenCalled(actual as MockFunction);
+  resultForMockFunction.toBeCalled = () =>
+    toHaveBeenCalled(actual as MockFunction);
+  resultForMockFunction.toHaveBeenCalledTimes = (amount: number) =>
+    toHaveBeenCalledTimes(actual as MockFunction, amount);
+  resultForMockFunction.toBeCalledTimes = (amount: number) =>
+    toHaveBeenCalledTimes(actual as MockFunction, amount);
+  resultForMockFunction.toHaveBeenCalledWith = (...args: unknown[]) =>
+    toHaveBeenCalledWith(actual, ...args);
+  resultForMockFunction.toBeCalledWith =
+    resultForMockFunction.toHaveBeenCalledWith;
+  resultForMockFunction.toHaveBeenLastCalledWith = (...args: unknown[]) =>
+    toHaveBeenLastCalledWith(actual, ...args);
+  resultForMockFunction.lastCalledWith =
+    resultForMockFunction.toHaveBeenLastCalledWith;
+  return resultForMockFunction;
 }
