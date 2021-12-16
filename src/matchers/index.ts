@@ -4,3 +4,5 @@ export * from './to-be-null/to-be-null';
 export * from './to-equal/to-equal';
 export * from './to-match-object/to-match-object';
 export * from './to-strict-equal/to-strict-equal';
+export * from './to-have-been-called/to-have-been-called';
+export * from './to-have-been-called-times/to-have-been-called-times';

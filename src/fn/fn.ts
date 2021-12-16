@@ -1,6 +1,7 @@
 export interface MockFunction {
   (): void;
   hasBeenCalled: () => boolean;
+  hasBeenCalledTimes: () => number;
 }
 
 class Mock {
@@ -14,10 +15,15 @@ class Mock {
     return this.calledTimes > 0;
   }
 
+  public hasBeenCalledTimes(): number {
+    return this.calledTimes;
+  }
+
   public static create(): MockFunction {
     const instance = new Mock();
     return Object.assign(() => instance.call(), {
       hasBeenCalled: () => instance.hasBeenCalled(),
+      hasBeenCalledTimes: () => instance.hasBeenCalledTimes(),
     });
   }
 }
