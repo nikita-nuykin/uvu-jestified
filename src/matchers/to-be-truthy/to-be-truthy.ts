@@ -1,9 +1,9 @@
 import { assert } from '../../utils/assert';
 
-export function toBeTruthy(value: unknown, errorMessage?: string): void {
-  const result = !!value;
+export function toBeTruthy(actual: unknown, errorMessage?: string): void {
+  const result = !!actual;
   if (result) return;
 
   const generated = !errorMessage;
-  assert({ value, message: errorMessage, generated, operator: 'toBe' });
+  assert({ actual, message: errorMessage, generated, operator: 'toBe' });
 }

@@ -2,8 +2,8 @@ import { Assertion } from 'uvu/assert';
 import { stringify } from './stringify';
 
 export interface AssertProps {
-  value?: any;
-  expected?: any;
+  actual?: any;
+  expects?: any;
   operator: string;
   message?: string;
   generated: boolean;
@@ -13,17 +13,17 @@ const defaultMessage = 'There was an error :(';
 
 export function assert(props: AssertProps): never {
   let message = '';
-  if ('value' in props) {
-    message += `Value: "${stringify(props.value)}".`;
+  if ('actual' in props) {
+    message += `Actual: "${stringify(props.actual)}".`;
   }
-  if ('expected' in props) {
+  if ('expects' in props) {
     if (message) message += ' ';
-    message += `Expected: "${stringify(props.expected)}".`;
+    message += `Expects: "${stringify(props.expects)}".`;
   }
 
   throw new Assertion({
-    actual: props.value,
-    expects: props.expected,
+    actual: props.actual,
+    expects: props.expects,
     operator: props.operator,
     message: message || defaultMessage,
     generated: props.generated,

@@ -2,29 +2,29 @@ import { toBeAlgo } from '../to-be/to-be';
 import { assert } from '../../utils/assert';
 import { toMatchObjectAlgo } from '../to-match-object/to-match-object';
 
-export function toEqualAlgo(value: unknown, expected: unknown): boolean {
-  const valueIsObject = typeof value == 'object';
-  const expectedIsObject = typeof expected == 'object';
+export function toEqualAlgo(actual: unknown, expects: unknown): boolean {
+  const valueIsObject = typeof actual == 'object';
+  const expectedIsObject = typeof expects == 'object';
 
-  if (!valueIsObject || !expectedIsObject) return toBeAlgo(value, expected);
+  if (!valueIsObject || !expectedIsObject) return toBeAlgo(actual, expects);
 
   return (
-    toMatchObjectAlgo(value, expected) && toMatchObjectAlgo(expected, value)
+    toMatchObjectAlgo(actual, expects) && toMatchObjectAlgo(expects, actual)
   );
 }
 
 export function toEqual(
-  value: unknown,
-  expected: unknown,
+  actual: unknown,
+  expects: unknown,
   errorMessage?: string,
 ): void {
-  const result = toEqualAlgo(value, expected);
+  const result = toEqualAlgo(actual, expects);
   if (result) return;
 
   const generated = !errorMessage;
   assert({
-    value,
-    expected,
+    actual,
+    expects,
     message: errorMessage,
     generated,
     operator: 'toEqual',

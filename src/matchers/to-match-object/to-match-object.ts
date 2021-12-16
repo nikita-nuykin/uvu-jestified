@@ -2,24 +2,24 @@ import { assert } from '../../utils/assert';
 import { toBeAlgo } from '../to-be/to-be';
 
 // TODO: optimization is required
-export function toMatchObjectAlgo(value: unknown, expected: unknown): boolean {
-  if (typeof value !== 'object' || typeof expected !== 'object') {
+export function toMatchObjectAlgo(actual: unknown, expects: unknown): boolean {
+  if (typeof actual !== 'object' || typeof expects !== 'object') {
     assert({
-      value,
-      expected,
-      message: 'value or expected value is not an object',
+      actual,
+      expects,
+      message: 'Actual or expected value is not an object',
       generated: true,
       operator: 'toMatchObject',
     });
   }
 
-  if (value === null || expected === null) {
-    return value === expected;
+  if (actual === null || expects === null) {
+    return actual === expects;
   }
 
-  for (let key of Object.keys(expected)) {
-    const valueOfValueByKey = (value as Record<string, unknown>)[key];
-    const valueOfExpectedByKey = (expected as Record<string, unknown>)[key];
+  for (let key of Object.keys(expects)) {
+    const valueOfValueByKey = (actual as Record<string, unknown>)[key];
+    const valueOfExpectedByKey = (expects as Record<string, unknown>)[key];
 
     const vKeyIsObject = typeof valueOfExpectedByKey === 'object';
     const eKeyIsObject = typeof valueOfValueByKey === 'object';
@@ -39,17 +39,17 @@ export function toMatchObjectAlgo(value: unknown, expected: unknown): boolean {
 }
 
 export function toMatchObject(
-  value: unknown,
-  expected: unknown,
+  actual: unknown,
+  expects: unknown,
   errorMessage?: string,
 ): void {
-  const result = toMatchObjectAlgo(value, expected);
+  const result = toMatchObjectAlgo(actual, expects);
   if (result) return;
 
   const generated = !errorMessage;
   assert({
-    value,
-    expected,
+    actual,
+    expects,
     message: errorMessage,
     generated,
     operator: 'toMatchObject',

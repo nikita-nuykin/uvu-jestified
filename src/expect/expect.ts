@@ -8,21 +8,21 @@ import {
 } from '../matchers';
 
 export interface ExpectedMatchers {
-  toBe: (expected: unknown) => void;
+  toBe: (expects: unknown) => void;
   toBeTruthy: () => void;
   toBeNull: () => void;
-  toEqual: (expected: unknown) => void;
-  toMatchObject: (expected: unknown) => void;
-  toStrictEqual: (expected: unknown) => void;
+  toEqual: (expects: unknown) => void;
+  toMatchObject: (expects: unknown) => void;
+  toStrictEqual: (expects: unknown) => void;
 }
 
-export function expect(value: unknown): ExpectedMatchers {
+export function expect(actual: unknown): ExpectedMatchers {
   return {
-    toBe: (expected: unknown) => toBe(value, expected),
-    toBeTruthy: () => toBeTruthy(value),
-    toBeNull: () => toBeNull(value),
-    toEqual: (expected: unknown) => toEqual(value, expected),
-    toMatchObject: (expected: unknown) => toMatchObject(value, expected),
-    toStrictEqual: (expected: unknown) => toStrictEqual(value, expected),
+    toBe: (expects: unknown) => toBe(actual, expects),
+    toBeTruthy: () => toBeTruthy(actual),
+    toBeNull: () => toBeNull(actual),
+    toEqual: (expects: unknown) => toEqual(actual, expects),
+    toMatchObject: (expects: unknown) => toMatchObject(actual, expects),
+    toStrictEqual: (expects: unknown) => toStrictEqual(actual, expects),
   };
 }

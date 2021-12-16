@@ -1,21 +1,21 @@
 import { assert } from '../../utils/assert';
 
-export function toBeAlgo(value: unknown, expected: unknown): boolean {
-  return Object.is(value, expected);
+export function toBeAlgo(actual: unknown, expects: unknown): boolean {
+  return Object.is(actual, expects);
 }
 
 export function toBe(
-  value: unknown,
-  expected: unknown,
+  actual: unknown,
+  expects: unknown,
   errorMessage?: string,
 ): void {
-  const result = toBeAlgo(value, expected);
+  const result = toBeAlgo(actual, expects);
   if (result) return;
 
   const generated = !errorMessage;
   assert({
-    value,
-    expected,
+    actual,
+    expects,
     message: errorMessage,
     generated,
     operator: 'toBe',

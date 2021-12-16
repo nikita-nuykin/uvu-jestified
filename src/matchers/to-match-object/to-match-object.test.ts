@@ -6,11 +6,15 @@ const baseObject = { a: 1, b: { c: '2' } };
 
 describe('toMatchObject', (it) => {
   it('Different values -> error', () => {
-    throwsAssertionError(() => toMatchObject(baseObject, { ...baseObject, a: '1' }));
+    throwsAssertionError(() =>
+      toMatchObject(baseObject, { ...baseObject, a: '1' }),
+    );
   });
 
   it('Expected more fields -> error', () => {
-    throwsAssertionError(() => toMatchObject(baseObject, { ...baseObject, d: '1' }));
+    throwsAssertionError(() =>
+      toMatchObject(baseObject, { ...baseObject, d: '1' }),
+    );
   });
 
   it('Expected less fields -> success', () => {

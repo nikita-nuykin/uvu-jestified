@@ -1,17 +1,17 @@
 import { assert } from '../../utils/assert';
 
 export function toStrictEqual(
-  value: unknown,
-  expected: unknown,
+  actual: unknown,
+  expects: unknown,
   errorMessage?: string,
 ): void {
-  const result = value === expected;
+  const result = actual === expects;
   if (result) return;
 
   const generated = !errorMessage;
   assert({
-    value,
-    expected,
+    actual,
+    expects,
     message: errorMessage,
     generated,
     operator: 'toStrictEqual',
