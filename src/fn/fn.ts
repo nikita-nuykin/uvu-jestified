@@ -4,6 +4,15 @@ export interface MockFunction {
   hasBeenCalledTimes: () => number;
 }
 
+export function isMockFunction(func: unknown): func is MockFunction {
+  return (
+    !!func &&
+    typeof func === 'object' &&
+    'hasBeenCalled' in func &&
+    'hasBeenCalledTimes' in func
+  );
+}
+
 class Mock {
   private calledTimes: number = 0;
 
