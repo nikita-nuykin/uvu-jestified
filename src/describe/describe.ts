@@ -28,7 +28,11 @@ function setupOptions(suite: UvuSuite, options: SetupOptions) {
 }
 
 export function describe(name: string, described: DescribedContent): void;
-export function describe(name: string, options: SetupOptions, content: DescribedContent): void;
+export function describe(
+  name: string,
+  options: SetupOptions,
+  content: DescribedContent,
+): void;
 
 export function describe(
   name: string,
@@ -49,5 +53,6 @@ export function describe(
 }
 
 export function createDescribe(options?: SetupOptions) {
-  return (name: string, described: DescribedContent) => describe(name, options || {}, described);
+  return (name: string, described: DescribedContent) =>
+    describe(name, options || {}, described);
 }

@@ -4,7 +4,7 @@ import { describe } from './describe';
 
 let value = 1;
 
-describe('Describe works as expected', it => {
+describe('Describe works as expected', (it) => {
   it('Test', () => {
     equal(++value, 2);
   });

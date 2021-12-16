@@ -1,10 +1,8 @@
 import { assert } from '../../utils/assert';
 import { toBeAlgo } from '../to-be/to-be';
 
-export type MatchObject = Record<string, unknown>;
-
 // TODO: optimization is required
-export function toMatchObjectAlgo(value: MatchObject, expected: MatchObject): boolean {
+export function toMatchObjectAlgo(value: unknown, expected: unknown): boolean {
   if (typeof value !== 'object' || typeof expected !== 'object') {
     assert({
       value,
@@ -15,32 +13,45 @@ export function toMatchObjectAlgo(value: MatchObject, expected: MatchObject): bo
     });
   }
 
+  if (value === null || expected === null) {
+    return value === expected;
+  }
+
   for (let key of Object.keys(expected)) {
-    const vKeyIsObject = typeof expected[key] === 'object';
-    const eKeyIsObject = typeof value[key] === 'object';
+    const valueOfValueByKey = (value as Record<string, unknown>)[key];
+    const valueOfExpectedByKey = (expected as Record<string, unknown>)[key];
+
+    const vKeyIsObject = typeof valueOfExpectedByKey === 'object';
+    const eKeyIsObject = typeof valueOfValueByKey === 'object';
 
     if (vKeyIsObject !== eKeyIsObject) return false;
 
     if (vKeyIsObject && eKeyIsObject) {
-      if (toMatchObjectAlgo(expected[key] as MatchObject, value[key] as MatchObject)) {
+      if (toMatchObjectAlgo(valueOfExpectedByKey, valueOfValueByKey)) {
         continue;
       }
       return false;
     }
 
-    if (!toBeAlgo(expected[key], value[key])) return false;
+    if (!toBeAlgo(valueOfExpectedByKey, valueOfValueByKey)) return false;
   }
   return true;
 }
 
 export function toMatchObject(
-  value: MatchObject,
-  expected: MatchObject,
+  value: unknown,
+  expected: unknown,
   errorMessage?: string,
 ): void {
   const result = toMatchObjectAlgo(value, expected);
   if (result) return;
 
-  const generated =  !errorMessage;
-  assert({ value, expected, message: errorMessage, generated, operator: 'toMatchObject' });
+  const generated = !errorMessage;
+  assert({
+    value,
+    expected,
+    message: errorMessage,
+    generated,
+    operator: 'toMatchObject',
+  });
 }

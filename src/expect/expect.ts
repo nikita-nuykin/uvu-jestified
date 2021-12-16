@@ -4,27 +4,25 @@ import {
   toBeNull,
   toEqual,
   toMatchObject,
-  MatchObject,
   toStrictEqual,
 } from '../matchers';
 
-export interface ExpectedMatchers<T> {
-  toBe: (expected: T) => void;
+export interface ExpectedMatchers {
+  toBe: (expected: unknown) => void;
   toBeTruthy: () => void;
   toBeNull: () => void;
-  toEqual: (expected: T) => void;
-  toMatchObject: (expected: MatchObject) => void;
+  toEqual: (expected: unknown) => void;
+  toMatchObject: (expected: unknown) => void;
   toStrictEqual: (expected: unknown) => void;
 }
 
-export function expect<T>(value: T): ExpectedMatchers<T> {
+export function expect(value: unknown): ExpectedMatchers {
   return {
-    toBe: (expected: T) => toBe(value, expected),
+    toBe: (expected: unknown) => toBe(value, expected),
     toBeTruthy: () => toBeTruthy(value),
     toBeNull: () => toBeNull(value),
-    toEqual: (expected: T) => toEqual(value, expected),
-    toMatchObject: (expected: MatchObject) =>
-      toMatchObject(value as MatchObject, expected),
+    toEqual: (expected: unknown) => toEqual(value, expected),
+    toMatchObject: (expected: unknown) => toMatchObject(value, expected),
     toStrictEqual: (expected: unknown) => toStrictEqual(value, expected),
   };
 }

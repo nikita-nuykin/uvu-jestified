@@ -4,10 +4,18 @@ import { describe } from './describe';
 
 let value = '';
 
-const beforeAll = () => {value += 'BA';};
-const beforeEach = async () => {value += '_BE';};
-const afterEach = () => {value += '_AE';};
-const afterAll = async () => {value += '_AA';};
+const beforeAll = () => {
+  value += 'BA';
+};
+const beforeEach = async () => {
+  value += '_BE';
+};
+const afterEach = () => {
+  value += '_AE';
+};
+const afterAll = async () => {
+  value += '_AA';
+};
 const options = { beforeAll, beforeEach, afterEach, afterAll };
 
 describe('Describe with setup hooks', options, (it) => {

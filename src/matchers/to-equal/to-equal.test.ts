@@ -15,12 +15,14 @@ describe('toEqual', (it) => {
 
   it('Objects', () => {
     toEqual({ x: 1, y: { z: 'x' } }, { x: 1, y: { z: 'x' } });
-    throwsAssertionError(() => toEqual({ x: 1, y: { z: 'x' } }, { x: 1, y: { z: 'z' } }));
-    throwsAssertionError(
-      () => toEqual({ x: 1, y: { z: 'x' } }, { x: 1, y: { z: 'x', d: 'a' } }),
+    throwsAssertionError(() =>
+      toEqual({ x: 1, y: { z: 'x' } }, { x: 1, y: { z: 'z' } }),
     );
-    throwsAssertionError(
-      () => toEqual({ x: 1, y: { z: 'x', d: 'a' } }, { x: 1, y: { z: 'x' } }),
+    throwsAssertionError(() =>
+      toEqual({ x: 1, y: { z: 'x' } }, { x: 1, y: { z: 'x', d: 'a' } }),
+    );
+    throwsAssertionError(() =>
+      toEqual({ x: 1, y: { z: 'x', d: 'a' } }, { x: 1, y: { z: 'x' } }),
     );
   });
 });

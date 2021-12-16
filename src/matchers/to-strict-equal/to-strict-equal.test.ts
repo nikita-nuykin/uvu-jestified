@@ -3,7 +3,7 @@ import { throwsAssertionError } from '../../utils/trows-assertion';
 import { toStrictEqual } from './to-strict-equal';
 
 describe('toStrictEqual', (it) => {
-  it('11 !== \'11\'', () => {
+  it("11 !== '11'", () => {
     throwsAssertionError(() => toStrictEqual(11, '11'));
   });
 

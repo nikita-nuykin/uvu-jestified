@@ -1,21 +1,32 @@
 import { toBeAlgo } from '../to-be/to-be';
 import { assert } from '../../utils/assert';
-import { MatchObject, toMatchObjectAlgo } from '../to-match-object/to-match-object';
+import { toMatchObjectAlgo } from '../to-match-object/to-match-object';
 
-export function toEqualAlgo<T>(value: T, expected: T): boolean {
+export function toEqualAlgo(value: unknown, expected: unknown): boolean {
   const valueIsObject = typeof value == 'object';
   const expectedIsObject = typeof expected == 'object';
 
   if (!valueIsObject || !expectedIsObject) return toBeAlgo(value, expected);
 
-  return toMatchObjectAlgo(value as MatchObject, expected as MatchObject)
-    && toMatchObjectAlgo(expected as MatchObject, value as MatchObject);
+  return (
+    toMatchObjectAlgo(value, expected) && toMatchObjectAlgo(expected, value)
+  );
 }
 
-export function toEqual<T>(value: T, expected: T, errorMessage?: string): void {
+export function toEqual(
+  value: unknown,
+  expected: unknown,
+  errorMessage?: string,
+): void {
   const result = toEqualAlgo(value, expected);
   if (result) return;
 
-  const generated =  !errorMessage;
-  assert({ value, expected, message: errorMessage, generated, operator: 'toEqual' });
+  const generated = !errorMessage;
+  assert({
+    value,
+    expected,
+    message: errorMessage,
+    generated,
+    operator: 'toEqual',
+  });
 }
