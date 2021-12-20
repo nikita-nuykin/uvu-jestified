@@ -12,6 +12,7 @@ import {
   toHaveBeenLastCalledWith,
   toHaveBeenNthCalledWith,
   toHaveReturned,
+  toHaveReturnedTimes,
 } from '../matchers';
 import { ExpectedMatchers, ExpectedMatchersForMockFunction } from './types';
 
@@ -61,6 +62,9 @@ function getExpectedMatchersForMockFunction(
 
     toHaveReturned: () => toHaveReturned(actual),
     toReturn: () => toHaveReturned(actual),
+
+    toHaveReturnedTimes: (times: number) => toHaveReturnedTimes(actual, times),
+    toReturnTimes: (times: number) => toHaveReturnedTimes(actual, times),
   };
 }
 

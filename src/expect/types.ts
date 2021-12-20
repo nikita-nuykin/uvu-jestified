@@ -20,4 +20,6 @@ export interface ExpectedMatchersForMockFunction extends ExpectedMatchers {
   nthCalledWith: (nthCall: number, ...args: unknown[]) => void;
   toHaveReturned: () => void;
   toReturn: () => void;
+  toHaveReturnedTimes: (times: number) => void;
+  toReturnTimes: (times: number) => void;
 }
