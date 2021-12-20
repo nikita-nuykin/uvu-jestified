@@ -1,45 +1,56 @@
 export interface MockFunction {
   (...args: unknown[]): void;
-  getCalledTimes: () => number;
   getCalledWith: () => unknown[][];
+  getReturned: () => unknown[];
 }
+
+export type MockFunctionInnerFunc = (...args: unknown[]) => unknown;
 
 export function isMockFunction(func: unknown): func is MockFunction {
   return (
     !!func &&
     typeof func === 'object' &&
-    'getCalledTimes' in func &&
+    'getReturned' in func &&
     'getCalledWith' in func
   );
 }
 
 class Mock {
-  private calledTimes: number = 0;
+  private readonly calledWith: unknown[][] = [];
 
-  private calledWith: unknown[][] = [];
+  private readonly returned: unknown[] = [];
 
-  public call(...args: unknown[]): void {
-    this.calledTimes += 1;
-    this.calledWith.push(args);
+  private readonly innerFunc: MockFunctionInnerFunc;
+
+  constructor(innerFunc: MockFunctionInnerFunc) {
+    this.innerFunc = innerFunc;
   }
 
-  public getCalledTimes(): number {
-    return this.calledTimes;
+  public call(...args: unknown[]): void {
+    this.calledWith.push(args);
+
+    const result = this.innerFunc(args);
+    this.returned.push(result);
   }
 
   public getCalledWith(): unknown[][] {
     return this.calledWith;
   }
 
-  public static create(): MockFunction {
-    const instance = new Mock();
+  public getReturned(): unknown[] {
+    return this.returned;
+  }
+
+  public static create(innerFunc: MockFunctionInnerFunc): MockFunction {
+    const instance = new Mock(innerFunc);
+
     return Object.assign((...args: unknown[]) => instance.call(...args), {
-      getCalledTimes: () => instance.getCalledTimes(),
       getCalledWith: () => instance.getCalledWith(),
+      getReturned: () => instance.getReturned(),
     });
   }
 }
 
-export function fn(): MockFunction {
-  return Mock.create();
+export function fn(innerFunc: MockFunctionInnerFunc = () => {}): MockFunction {
+  return Mock.create(innerFunc);
 }

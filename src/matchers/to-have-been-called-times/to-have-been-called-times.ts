@@ -6,7 +6,7 @@ export function toHaveBeenCalledTimes(
   expects: number,
   errorMessage?: string,
 ): void {
-  const result = func.getCalledTimes();
+  const result = func.getCalledWith().length;
   if (result === expects) return;
 
   const generated = !errorMessage;

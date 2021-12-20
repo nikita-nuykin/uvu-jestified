@@ -11,6 +11,7 @@ import {
   toHaveBeenCalledWith,
   toHaveBeenLastCalledWith,
   toHaveBeenNthCalledWith,
+  toHaveReturned,
 } from '../matchers';
 import { ExpectedMatchers, ExpectedMatchersForMockFunction } from './types';
 
@@ -57,6 +58,9 @@ function getExpectedMatchersForMockFunction(
       toHaveBeenNthCalledWith(actual, nthCall, ...args),
     nthCalledWith: (nthCall: number, ...args: unknown[]) =>
       toHaveBeenNthCalledWith(actual, nthCall, ...args),
+
+    toHaveReturned: () => toHaveReturned(actual),
+    toReturn: () => toHaveReturned(actual),
   };
 }
 
