@@ -10,6 +10,7 @@ import {
   toHaveBeenCalledTimes,
   toHaveBeenCalledWith,
   toHaveBeenLastCalledWith,
+  toHaveBeenNthCalledWith,
 } from '../matchers';
 
 export interface ExpectedMatchers {
@@ -30,6 +31,8 @@ export interface ExpectedMatchersForMockFunction extends ExpectedMatchers {
   toBeCalledWith: (...args: unknown[]) => void;
   toHaveBeenLastCalledWith: (...args: unknown[]) => void;
   lastCalledWith: (...args: unknown[]) => void;
+  toHaveBeenNthCalledWith: (nthCall: number, ...args: unknown[]) => void;
+  nthCalledWith: (nthCall: number, ...args: unknown[]) => void;
 }
 
 export function expect(actual: unknown): ExpectedMatchers;
@@ -68,5 +71,11 @@ export function expect(
     toHaveBeenLastCalledWith(actual, ...args);
   resultForMockFunction.lastCalledWith =
     resultForMockFunction.toHaveBeenLastCalledWith;
+  resultForMockFunction.toHaveBeenNthCalledWith = (
+    nthCall: number,
+    ...args: unknown[]
+  ) => toHaveBeenNthCalledWith(actual, nthCall, ...args);
+  resultForMockFunction.nthCalledWith =
+    resultForMockFunction.toHaveBeenNthCalledWith;
   return resultForMockFunction;
 }

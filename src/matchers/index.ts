@@ -8,3 +8,4 @@ export * from './to-have-been-called/to-have-been-called';
 export * from './to-have-been-called-times/to-have-been-called-times';
 export * from './to-have-been-called-with/to-have-been-called-with';
 export * from './to-have-been-last-called-with/to-have-been-last-called-with';
+export * from './to-have-been-nth-called-with/to-have-been-nth-called-with';
