@@ -16,7 +16,6 @@
 - [ ] `.resolves`
 - [ ] `.rejects`
 - [ ] `.toHaveReturnedWith`
-- [ ] `.toHaveLastReturnedWith`
 - [ ] `.toHaveNthReturnedWith`
 - [ ] `.toHaveLength`
 - [ ] `.toHaveProperty`
@@ -56,3 +55,4 @@
 - [x] `.toHaveBeenNthCalledWith`
 - [x] `.toHaveReturned`
 - [x] `.toHaveReturnedTimes`
+- [x] `.toHaveLastReturnedWith`

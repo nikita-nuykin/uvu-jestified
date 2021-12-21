@@ -22,4 +22,6 @@ export interface ExpectedMatchersForMockFunction extends ExpectedMatchers {
   toReturn: () => void;
   toHaveReturnedTimes: (times: number) => void;
   toReturnTimes: (times: number) => void;
+  toHaveLastReturnedWith: (expects: unknown) => void;
+  lastReturnedWith: (expects: unknown) => void;
 }

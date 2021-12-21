@@ -11,3 +11,4 @@ export * from './to-have-been-last-called-with/to-have-been-last-called-with';
 export * from './to-have-been-nth-called-with/to-have-been-nth-called-with';
 export * from './to-have-returned/to-have-returned';
 export * from './to-have-returned-times/to-have-returned-times';
+export * from './to-have-last-returned-with/to-have-last-returned-with';
