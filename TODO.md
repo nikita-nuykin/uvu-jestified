@@ -21,7 +21,6 @@
 - [ ] `.toHaveProperty`
 - [ ] `.toBeCloseTo`
 - [ ] `.toBeDefined`
-- [ ] `.toBeFalsy`
 - [ ] `.toBeGreaterThan`
 - [ ] `.toBeGreaterThanOrEqual`
 - [ ] `.toBeLessThan`
@@ -56,3 +55,4 @@
 - [x] `.toHaveReturned`
 - [x] `.toHaveReturnedTimes`
 - [x] `.toHaveLastReturnedWith`
+- [x] `.toBeFalsy`

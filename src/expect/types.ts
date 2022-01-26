@@ -1,6 +1,7 @@
 export interface ExpectedMatchers {
   toBe: (expects: unknown) => void;
   toBeTruthy: () => void;
+  toBeFalsy: () => void;
   toBeNull: () => void;
   toEqual: (expects: unknown) => void;
   toMatchObject: (expects: unknown) => void;

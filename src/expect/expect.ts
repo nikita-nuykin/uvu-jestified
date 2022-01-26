@@ -14,6 +14,7 @@ import {
   toHaveReturned,
   toHaveReturnedTimes,
   toHaveLastReturnedWith,
+  toBeFalsy,
 } from '../matchers';
 import { ExpectedMatchers, ExpectedMatchersForMockFunction } from './types';
 
@@ -25,6 +26,7 @@ function getExpectedMatchers(actual: unknown): ExpectedMatchers {
     toEqual: (expects: unknown) => toEqual(actual, expects),
     toMatchObject: (expects: unknown) => toMatchObject(actual, expects),
     toStrictEqual: (expects: unknown) => toStrictEqual(actual, expects),
+    toBeFalsy: () => toBeFalsy(actual),
   };
 }
 
@@ -38,6 +40,7 @@ function getExpectedMatchersForMockFunction(
     toEqual: (expects: unknown) => toEqual(actual, expects),
     toMatchObject: (expects: unknown) => toMatchObject(actual, expects),
     toStrictEqual: (expects: unknown) => toStrictEqual(actual, expects),
+    toBeFalsy: () => toBeFalsy(actual),
 
     toHaveBeenCalled: () => toHaveBeenCalled(actual),
     toBeCalled: () => toHaveBeenCalled(actual),
